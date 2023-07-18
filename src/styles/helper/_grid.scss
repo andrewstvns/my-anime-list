@@ -1,0 +1,11 @@
+.container {
+  max-width: 1440px;
+  margin-right: auto;
+  margin-left: auto;
+  @include clearfix;
+  width: 100%;
+}
+.row {
+  margin-left: -12px;
+  margin-right: -12px;
+}
