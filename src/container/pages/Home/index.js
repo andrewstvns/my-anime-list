@@ -32,6 +32,7 @@ const Home = ({ className }) => {
                 name={i.title} 
                 img={i.images.jpg.large_image_url}
                 duration={i.duration}
+                listId={i.mal_id}
               />
             </Fragment>
           ))}

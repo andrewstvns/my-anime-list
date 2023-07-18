@@ -11,7 +11,7 @@ const AppRoutes = [
   },
   {
     id: 1,
-    path: '/detail',
+    path: '/detail/:id',
     element: <Detail />
   }
 ];
