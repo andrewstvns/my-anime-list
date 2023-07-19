@@ -5,12 +5,13 @@ import {
   Routes
 } from 'react-router-dom';
 import AppRoutes from 'config/routes';
+import { Loader } from 'components';
 
 
 const App = () => {
   return (
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           {AppRoutes.map((route) => (
             <Route key={route.id} {...route} />

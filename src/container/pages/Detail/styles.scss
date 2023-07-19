@@ -1,0 +1,18 @@
+// import mixin and variables
+
+@import '../../../styles/helper/function',
+  '../../../styles/helper/mixin',
+  '../../../styles/helper/variables';
+
+.p-detail {
+  $parent: &;
+  padding: 8rem 0;
+  &__background {
+    background: #000000;
+    background-attachment: fixed;
+    background-position: center 25%;
+  }
+  .anime-detail {
+    background-color: rgba($color: #dbdbdb, $alpha: .8);
+  }
+}

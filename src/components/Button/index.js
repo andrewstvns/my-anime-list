@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classname from 'classnames';
 import './styles.scss';
+import { Link } from 'react-router-dom';
 
 const Button = ({
   className,
@@ -9,6 +10,7 @@ const Button = ({
   onClick,
   variant,
   route,
+  to,
   children
 }) => {
   const classNames = classname('button', className, {
@@ -18,7 +20,7 @@ const Button = ({
     <Fragment>
       {route && (
         <div className={classNames}>
-          <a type='link' onClick={onClick} href='/detail'>
+          <a href={to}>
             {children}
           </a>
         </div>
@@ -41,7 +43,6 @@ Button.propTypes = {
   className: PropTypes.string,
   type: PropTypes.string,
   variant: PropTypes.string,
-  pokemonIndex: PropTypes.string,
   route: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.node,
@@ -52,8 +53,8 @@ Button.defaultProps = {
   type: 'button',
   route: false,
   variant: '',
-  pokemonIndex: '',
   onClick: () => {},
+  to: '',
   children: {},
 };
 

@@ -1,0 +1,10 @@
+// import mixin and variables
+
+@import '../../../styles/helper/function',
+  '../../../styles/helper/mixin',
+  '../../../styles/helper/variables';
+
+.p-home {
+  $parent: &;
+  padding: 8rem 0;
+}

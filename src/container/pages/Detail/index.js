@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import classname from 'classnames';
 import './styles.scss';
 import { useParams } from 'react-router-dom';
-import { Card } from 'components';
+import { AnimeDetail, Button, Header, Loader } from 'components';
 
 const Detail = ({ className }) => {
   const { id } = useParams();
@@ -11,8 +11,14 @@ const Detail = ({ className }) => {
     title: "",
     images: "",
     duration: "",
-    id: ""
+    id: "",
+    synopsis: "",
+    aired: "",
+    rating: "",
+    status: "",
+    rank: ""
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const getAnimeDetails = async () => {
     const temp = await 
@@ -22,8 +28,14 @@ const Detail = ({ className }) => {
       title: temp.data.title,
       images: temp.data.images.jpg.large_image_url,
       duration: temp.data.duration,
-      id: temp.data.mal_id
+      id: temp.data.mal_id,
+      synopsis: temp.data.synopsis,
+      aired: temp.data.aired.string,
+      rating: temp.data.rating,
+      status: temp.data.status,
+      rank: temp.data.rank
     });
+    setIsLoading(true);
   };
 
   useEffect (() => {
@@ -36,17 +48,27 @@ const Detail = ({ className }) => {
 
   return (
     <div className={classNames}>
-      <div className='container'>
-        <div className='row'>
-          <h1>Detail</h1>
-          <Card 
-            name={animeDetail.title} 
-            img={animeDetail.images}
-            duration={animeDetail.duration}
-            listId={animeDetail.id}
-          />
+      <Header />
+      {!isLoading ? (
+        <Loader />
+      ) : (
+        <div className='container'>
+          <div className='row'>
+            <Button route to={'/'}>Back</Button>
+            <AnimeDetail 
+              title ={animeDetail.title} 
+              img={animeDetail.images}
+              id={animeDetail.id}
+              desc={animeDetail.synopsis}
+              aired={animeDetail.aired}
+              rating={animeDetail.rating}
+              status={animeDetail.status}
+              duration={animeDetail.duration}
+              rank={animeDetail.rank}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 };

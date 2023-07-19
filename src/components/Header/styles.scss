@@ -5,5 +5,16 @@
   '../../styles/helper/variables';
 
 .header {
-
+  $parent: &;
+  position: fixed;
+  background-color: #1a2d5a;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 55px;
+  z-index: 2;
+  h1 {
+    color: #fff;
+    padding: 14px 0;
+  }
 }
