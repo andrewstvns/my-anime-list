@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import classname from 'classnames';
 import './styles.scss';
 import { useParams } from 'react-router-dom';
-import { AnimeDetail, Button, Header, Loader } from 'components';
+import { AnimeDetail, Button, Header, Loader, Card } from 'components';
 
 const Detail = ({ className }) => {
   const { id } = useParams();
@@ -18,6 +18,7 @@ const Detail = ({ className }) => {
     status: "",
     rank: ""
   });
+  const [character, setCharacter] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const getAnimeDetails = async () => {
@@ -38,12 +39,26 @@ const Detail = ({ className }) => {
     setIsLoading(true);
   };
 
+  const getCharacter = async () => {
+    const temp = await 
+          fetch(`https://api.jikan.moe/v4/anime/${id}/characters`)
+          .then(res => res.json());
+
+    let sortedData = temp?.data.sort((a, b) =>
+      a.favorites < b.favorites ? 1 : -1
+    );
+    setCharacter(sortedData?.slice(0, 9));
+    setIsLoading(true);
+    console.log('char', character);
+  };
+
+
   useEffect (() => {
     getAnimeDetails();
+    getCharacter();
   }, []);
 
-  console.log('detail : ', animeDetail);
-
+  console.log(character);
   const classNames = classname('p-detail', className);
 
   return (
@@ -66,6 +81,7 @@ const Detail = ({ className }) => {
               duration={animeDetail.duration}
               rank={animeDetail.rank}
             />
+            <Card character charaList={character} />
           </div>
         </div>
       )}

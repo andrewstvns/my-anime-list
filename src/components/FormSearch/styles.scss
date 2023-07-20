@@ -1,0 +1,22 @@
+// import mixin and variables
+
+@import '../../styles/helper/function',
+  '../../styles/helper/mixin',
+  '../../styles/helper/variables';
+
+.form-search {
+  $parent: &;
+  margin-bottom: 1.6rem;
+  input {
+    border-bottom: 1px solid black;
+    outline: 0;
+    background-color: transparent;
+    color: #121f26;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 22px;
+    padding: 0;
+    margin-right: 8px;
+    width: 250px;
+  }
+}
